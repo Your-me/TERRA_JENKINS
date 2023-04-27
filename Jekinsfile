@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    tools {
+        terraform 'terraform 77'
+    }
+
+
+    stages {
+        stage('Git Branch CheckOut') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs:[[url: 'https://github.com/Your-me/TERRA_JENKINS.git']]])
+                }
+            }
+        stage('Change Directory to Dev') {
+            steps {
+                dir('dev') {
+                    sh 'ls'
+                }
+            }
+        stage('Perform Terraform Action') {
+            steps {
+                echo 'terraform action is ---> ${action}'
+                sh 'terraform ${action} -auto-approve'
+            }
+        }   
+        }
+    }
+}
