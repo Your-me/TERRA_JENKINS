@@ -8,13 +8,13 @@ pipeline {
     stages {
         stage('Git Branch CheckOut') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs:[[url: 'https://github.com/Your-me/TERRA_JENKINS.git']]])
+                 git branch: 'main', credentialsId: 'yourme_git', url: 'https://github.com/Your-me/TERRA_JENKINS.git'
                 }
             }
         stage('Change Directory to Dev') {
             steps {
                 dir('dev') {
-                    sh 'ls'
+                    echo 'Hello Elearners!'
                 }
             }
         stage('Perform Terraform Action') {
