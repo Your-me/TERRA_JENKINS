@@ -5,11 +5,8 @@ provider "aws" {
 #Create VPC
 module "vpc" {
   source          = "../vpc/"
-  vpc_cidr_block  = var.vpc_cidr_block
-  pub_cidr_block  = var.pub_cidr_block
-  priv_cidr_block = var.priv_cidr_block
-  region          = var.region
-
-
-
+  vpc_cidr_block  = "10.0.0.0/16"
+  pub_cidr_block  = "10.0.1.0/24"
+  priv_cidr_block = "10.0.2.0/24"
+  region          = "eu-west-2"
 }
