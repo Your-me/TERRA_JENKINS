@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Terraform explicit') {
             steps {
-                sh 'pwd'
+                sh 'terraform apply'
             }
         }
     }
