@@ -1,29 +1,32 @@
 pipeline {
     agent any
     tools {
-        terraform 'terraform 77'
+        terraform 'terraform-10'
     }
-
-
     stages {
-        stage('Git Branch CheckOut') {
+        stage('Hello') {
             steps {
-                 git branch: 'main', credentialsId: 'yourme_git', url: 'https://github.com/Your-me/TERRA_JENKINS.git'
-                }
+                echo 'Hello World'
             }
-        stage('Change Directory to Dev') {
+        }
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Your-me/TERRA_JENKINS.git'
+            }
+        }
+        stage('Change Directory') {
             steps {
                 dir('dev') {
-                    echo 'Hello Elearners!'
+                    echo 'Welcome to Dev Enviroment'
+                    sh 'ls'
+                    sh 'terraform init'
                 }
             }
-        stage('Perform Terraform Action') {
+        }
+        stage('Terraform explicit') {
             steps {
-                echo 'terraform action is ---> ${action}'
-                sh 'terraform ${action} -auto-approve'
+                sh 'pwd'
             }
-        }   
         }
     }
 }
-
