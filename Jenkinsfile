@@ -3,6 +3,7 @@ pipeline {
     tools {
         terraform 'terraform-10'
     }
+    
     stages {
         stage('Hello') {
             steps {
@@ -25,7 +26,7 @@ pipeline {
         }
         stage('Terraform explicit') {
             steps {
-                sh 'terraform apply'
+                sh 'terraform apply -var-file=terraform.tfvars -auto-approve'
             }
         }
     }
